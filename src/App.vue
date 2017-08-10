@@ -1,16 +1,24 @@
 <template>
   <div id="app">
-    <todo-list v-bind:todos="todos"></todo-list>
+    <h1 class="ui dividing centered header">Vue.js Todo App</h1>
+    <div class="ui three column centered grid">
+      <div class="column">
+        <todo-list v-bind:todos="todos"></todo-list>
+        <create-todo v-on:create-todo="createTodo"></create-todo>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import TodoList from './components/TodoList'
+import CreateTodo from './components/CreateTodo'
 
 export default {
   name: 'app',
   components: {
-    TodoList
+    TodoList,
+    CreateTodo
   },
   data () {
     return {
@@ -35,6 +43,11 @@ export default {
         project: 'Project D',
         done: false
       }]
+    }
+  },
+  methods: {
+    createTodo (todo) {
+      this.todos.push(todo)
     }
   }
 }
